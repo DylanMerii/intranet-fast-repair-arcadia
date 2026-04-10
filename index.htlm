@@ -14,7 +14,7 @@
 </div>
 
 <script>
-const firebaseConfig={apiKey:"TA_CLE",authDomain:"APP.firebaseapp.com",projectId:"APP"}
+const firebaseConfig={apiKey:"1111ebb7667dd5624344761f47958c06ad700846",authDomain:"FAST_REPAIR_ARCADIA.firebaseapp.com",projectId:"fast-repair-arcadia"}
 firebase.initializeApp(firebaseConfig)
 const auth=firebase.auth();const db=firebase.firestore();
 let currentRole="user";
