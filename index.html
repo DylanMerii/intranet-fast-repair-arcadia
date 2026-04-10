@@ -3,99 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fast Repair Arcadia</title>
+  <title>Sapeurs Pompiers Arcadia</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
+      font-family: 'Roboto', sans-serif;
+      background: #0b0b0b;
       color: #fff;
     }
+
     header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
       background: #000;
-      padding: 20px;
-      text-align: center;
       border-bottom: 2px solid red;
     }
+
     header h1 {
-      margin: 0;
-      font-size: 2.5em;
+      font-family: 'Orbitron', sans-serif;
       color: red;
     }
-    header p {
-      margin: 5px 0 0;
-      color: #ccc;
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
     }
+
     .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+                  url('https://images.unsplash.com/photo-1603398938378-0e6c26b3f7c6');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 3em;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 15px 30px;
+      background: red;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .services {
       padding: 60px 20px;
       text-align: center;
-      background: linear-gradient(45deg, #000, #222);
     }
-    .hero h2 {
-      font-size: 2em;
-      margin-bottom: 10px;
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: red;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-    }
-    .services {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .services h3 {
-      margin-bottom: 20px;
-    }
+
     .card {
-      background: #222;
-      margin: 10px;
-      padding: 20px;
-      border-radius: 10px;
-      display: inline-block;
+      background: #1a1a1a;
+      padding: 30px;
+      margin: 15px;
       width: 250px;
+      border-radius: 15px;
+      transition: 0.3s;
     }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px red;
+    }
+
     footer {
+      background: black;
       text-align: center;
       padding: 20px;
-      background: #000;
-      border-top: 1px solid #333;
+      color: #777;
     }
   </style>
 </head>
+
 <body>
 
 <header>
-  <h1>FAST REPAIR</h1>
-  <p>Arcadia</p>
+  <h1>🚒 ARCADIA</h1>
+  <nav>
+    <a href="#">Accueil</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
 <section class="hero">
-  <h2>Dépannage & Réparation Automobile</h2>
-  <p>Intervention rapide 24h/24</p>
-  <a href="#contact" class="btn">Nous contacter</a>
+  <h2>Intervention Rapide 24/7</h2>
+  <p>Sapeurs Pompiers Arcadia</p>
+  <a href="#contact" class="btn">Appeler en urgence</a>
 </section>
 
-<section class="services">
-  <h3>Nos Services</h3>
-  <div class="card">🚗 Dépannage</div>
-  <div class="card">🔧 Réparation</div>
-  <div class="card">🛞 Pneus</div>
-  <div class="card">⚡ Batterie</div>
+<section id="services" class="services">
+  <h2>Nos Missions</h2>
+  <div class="cards">
+    <div class="card">🔥 Incendie</div>
+    <div class="card">🚑 Secours</div>
+    <div class="card">🚗 Accident</div>
+    <div class="card">🌪️ Urgence</div>
+  </div>
 </section>
 
 <section id="contact" class="services">
-  <h3>Contact</h3>
-  <p>Téléphone : 06 00 00 00 00</p>
-  <p>Email : contact@fastrepair.fr</p>
+  <h2>Contact</h2>
+  <p>📞 18 ou 112</p>
+  <p>📍 Arcadia</p>
 </section>
 
 <footer>
-  <p>© 2026 Fast Repair Arcadia</p>
+  <p>© 2026 Sapeurs Pompiers Arcadia</p>
 </footer>
 
 </body>
