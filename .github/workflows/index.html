@@ -1,136 +1,94 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sapeurs Pompiers Arcadia</title>
+<h3>Créer utilisateur</h3>
+<input id="newEmail" placeholder="Email">
+<input id="newPass" placeholder="Password">
+<select id="roleSelect">
+<option value="user">Dépanneur</option>
+<option value="chef">Chef</option>
+<option value="admin">Admin</option>
+</select>
+<button onclick="createUser()">Créer</button>
+</div>
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
+</div>
+</div>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: #0b0b0b;
-      color: #fff;
-    }
+<script>
+const firebaseConfig={apiKey:"TA_CLE",authDomain:"APP.firebaseapp.com",projectId:"APP"}
+firebase.initializeApp(firebaseConfig)
+const auth=firebase.auth();const db=firebase.firestore();
+let currentRole="user";
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background: #000;
-      border-bottom: 2px solid red;
-    }
+function login(){
+auth.signInWithEmailAndPassword(email.value,password.value).then(()=>{
+login.style.display='none';app.style.display='block';loadRole();loadAll();})}
 
-    header h1 {
-      font-family: 'Orbitron', sans-serif;
-      color: red;
-    }
+function loadRole(){
+db.collection("users").doc(auth.currentUser.uid).get().then(doc=>{
+if(doc.exists) currentRole=doc.data().role;
+if(currentRole!="admin") document.querySelector('[onclick="showPage(\'admin\')"]').style.display='none';
+})}
 
-    nav a {
-      color: white;
-      margin-left: 20px;
-      text-decoration: none;
-    }
+function showPage(p){document.querySelectorAll('.page').forEach(x=>x.style.display='none');document.getElementById(p).style.display='block'}
 
-    .hero {
-      height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-                  url('https://images.unsplash.com/photo-1603398938378-0e6c26b3f7c6');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+function prendreService(){db.collection("service").add({user:auth.currentUser.email,start:Date.now()})}
 
-    .hero h2 {
-      font-size: 3em;
-      font-family: 'Orbitron', sans-serif;
-    }
+function loadAll(){
+setInterval(()=>{
+db.collection("service").get().then(s=>{
+serviceList.innerHTML='';tempsService.innerHTML='';let stats={}
+s.forEach(doc=>{
+let d=doc.data();let t=Math.floor((Date.now()-d.start)/60)
+serviceList.innerHTML+=`<li>${d.user}</li>`
+tempsService.innerHTML+=`<li>${d.user} - ${t} min</li>`
+stats[d.user]=(stats[d.user]||0)+t
+})
+statsList.innerHTML=''
+for(let u in stats){statsList.innerHTML+=`<li>${u} : ${stats[u]} min</li>`}
+})
+},2000)
 
-    .btn {
-      margin-top: 20px;
-      padding: 15px 30px;
-      background: red;
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+// FOURRIERE LIVE
+db.collection("fourriere").onSnapshot(s=>{
+fourriereTable.innerHTML=''
+s.forEach(doc=>{
+let d=doc.data();
+fourriereTable.innerHTML+=`<tr>
+<td>${d.prop}</td>
+<td>${d.vehicule}</td>
+<td class="${d.statut}">${d.statut}</td>
+<td>
+<button onclick="edit('${doc.id}','${d.prop}','${d.vehicule}')">✏️</button>
+<button onclick="supprimer('${doc.id}')">❌</button>
+</td>
+</tr>`})})
 
-    .services {
-      padding: 60px 20px;
-      text-align: center;
-    }
+// ADMIN INFOS
+db.collection("config").doc("info").onSnapshot(doc=>{if(doc.exists)infoText.innerText=doc.data().text})
+}
 
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+function ajouterFourriere(){
+db.collection("fourriere").add({prop:prop.value,vehicule:vehicule.value,date:date.value,destruction:destruction.value,statut:statut.value})}
 
-    .card {
-      background: #1a1a1a;
-      padding: 30px;
-      margin: 15px;
-      width: 250px;
-      border-radius: 15px;
-      transition: 0.3s;
-    }
+function supprimer(id){db.collection("fourriere").doc(id).delete()}
 
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px red;
-    }
+function edit(id,p,v){let np=prompt("Nom",p);let nv=prompt("Vehicule",v);db.collection("fourriere").doc(id).update({prop:np,vehicule:nv})}
 
-    footer {
-      background: black;
-      text-align: center;
-      padding: 20px;
-      color: #777;
-    }
-  </style>
-</head>
+function search(){let val=search.value.toLowerCase();document.querySelectorAll('#fourriereTable tr').forEach(tr=>{tr.style.display=tr.innerText.toLowerCase().includes(val)?'':'none'})}
 
-<body>
+function saveInfo(){db.collection("config").doc("info").set({text:adminText.value})}
 
-<header>
-  <h1>🚒 ARCADIA</h1>
-  <nav>
-    <a href="#">Accueil</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+function createUser(){
+auth.createUserWithEmailAndPassword(newEmail.value,newPass.value).then(cred=>{
+db.collection("users").doc(cred.user.uid).set({role:roleSelect.value})})}
 
-<section class="hero">
-  <h2>Intervention Rapide 24/7</h2>
-  <p>Sapeurs Pompiers Arcadia</p>
-  <a href="#contact" class="btn">Appeler en urgence</a>
-</section>
+// RESET DIMANCHE
+setInterval(()=>{let d=new Date();if(d.getDay()==0&&d.getHours()==12&&d.getMinutes()==0){db.collection("service").get().then(s=>s.forEach(doc=>doc.ref.delete()))}},60000)
+</script>
 
-<section id="services" class="services">
-  <h2>Nos Missions</h2>
-  <div class="cards">
-    <div class="card">🔥 Incendie</div>
-    <div class="card">🚑 Secours</div>
-    <div class="card">🚗 Accident</div>
-    <div class="card">🌪️ Urgence</div>
-  </div>
-</section>
+</body>
+</html>
 
-<section id="contact" class="services">
-  <h2>Contact</h2>
-  <p>📞 18 ou 112</p>
-  <p>📍 Arcadia</p>
-</section>
-
-<footer>
   <p>© 2026 Sapeurs Pompiers Arcadia</p>
 </footer>
 
