@@ -1,0 +1,46 @@
+{
+  "name": "FourriereVehicle",
+  "type": "object",
+  "properties": {
+    "owner_name": {
+      "type": "string",
+      "description": "Nom du propri\u00e9taire"
+    },
+    "impound_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date de mise en fourri\u00e8re"
+    },
+    "vehicle_name": {
+      "type": "string",
+      "description": "Nom du v\u00e9hicule"
+    },
+    "destruction_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date avant destruction"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "En fourri\u00e8re",
+        "R\u00e9cup\u00e9r\u00e9",
+        "En attente de destruction",
+        "D\u00e9truit"
+      ],
+      "default": "En fourri\u00e8re",
+      "description": "Statut du v\u00e9hicule"
+    },
+    "added_by": {
+      "type": "string",
+      "description": "Ajout\u00e9 par"
+    }
+  },
+  "required": [
+    "owner_name",
+    "impound_date",
+    "vehicle_name",
+    "destruction_date",
+    "status"
+  ]
+}
