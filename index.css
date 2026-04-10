@@ -1,39 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  * {
-    @apply border-border outline-none;
+  :root {
+    --background: 220 20% 7%;
+    --foreground: 210 20% 95%;
+    --primary: 25 95% 55%;
+    --primary-foreground: 0 0% 100%;
+    --border: 220 14% 18%;
+    --input: 220 14% 18%;
+    --ring: 25 95% 55%;
+    --radius: 0.75rem;
   }
 
   body {
     @apply bg-background text-foreground;
-  }
-
-  :root {
-    --background: 220 20% 7%;
-    --foreground: 210 20% 95%;
-
-    --primary: 25 95% 55%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 220 16% 16%;
-    --secondary-foreground: 210 20% 90%;
-
-    --border: 220 14% 18%;
-    --ring: 25 95% 55%;
-
-    --radius: 0.75rem;
-
-    --sidebar-background: 220 20% 9%;
-    --sidebar-foreground: 210 20% 85%;
-    --sidebar-primary: 25 95% 55%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 16% 14%;
-    --sidebar-border: 220 14% 16%;
   }
 }
 
@@ -41,15 +25,7 @@
   width: 6px;
 }
 
-::-webkit-scrollbar-track {
-  background: hsl(220 20% 7%);
-}
-
 ::-webkit-scrollbar-thumb {
   background: hsl(220 14% 22%);
   border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(25 95% 55%);
 }
