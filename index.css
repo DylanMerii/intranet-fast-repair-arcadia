@@ -79,11 +79,9 @@
   }
 }
 
-
-
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-none;
   }
 
   body {
@@ -94,13 +92,16 @@
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: hsl(220 20% 7%);
 }
+
 ::-webkit-scrollbar-thumb {
   background: hsl(220 14% 22%);
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(25 95% 55%);
 }
