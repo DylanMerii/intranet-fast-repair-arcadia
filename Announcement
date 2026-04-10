@@ -1,0 +1,31 @@
+{
+  "name": "Announcement",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Titre de l'annonce"
+    },
+    "content": {
+      "type": "string",
+      "description": "Contenu de l'annonce"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "normal",
+        "important",
+        "urgent"
+      ],
+      "default": "normal"
+    },
+    "author": {
+      "type": "string",
+      "description": "Auteur de l'annonce"
+    }
+  },
+  "required": [
+    "title",
+    "content"
+  ]
+}
