@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sapeurs Pompiers Arcadia</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #0b0b0b;
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: #000;
+      border-bottom: 2px solid red;
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      color: red;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+                  url('https://images.unsplash.com/photo-1603398938378-0e6c26b3f7c6');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 3em;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 15px 30px;
+      background: red;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .services {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .card {
+      background: #1a1a1a;
+      padding: 30px;
+      margin: 15px;
+      width: 250px;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px red;
+    }
+
+    footer {
+      background: black;
+      text-align: center;
+      padding: 20px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚒 ARCADIA</h1>
+  <nav>
+    <a href="#">Accueil</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Intervention Rapide 24/7</h2>
+  <p>Sapeurs Pompiers Arcadia</p>
+  <a href="#contact" class="btn">Appeler en urgence</a>
+</section>
+
+<section id="services" class="services">
+  <h2>Nos Missions</h2>
+  <div class="cards">
+    <div class="card">🔥 Incendie</div>
+    <div class="card">🚑 Secours</div>
+    <div class="card">🚗 Accident</div>
+    <div class="card">🌪️ Urgence</div>
+  </div>
+</section>
+
+<section id="contact" class="services">
+  <h2>Contact</h2>
+  <p>📞 18 ou 112</p>
+  <p>📍 Arcadia</p>
+</section>
+
+<footer>
+  <p>© 2026 Sapeurs Pompiers Arcadia</p>
+</footer>
+
+</body>
+</html>
