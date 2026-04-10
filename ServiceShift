@@ -1,0 +1,44 @@
+{
+  "name": "ServiceShift",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email du d\u00e9panneur"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Nom du d\u00e9panneur"
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "D\u00e9but du service"
+    },
+    "end_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Fin du service (null si en cours)"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Service en cours"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "default": 0,
+      "description": "Dur\u00e9e en minutes"
+    },
+    "week_start": {
+      "type": "string",
+      "description": "Date du d\u00e9but de la semaine (pour reset)"
+    }
+  },
+  "required": [
+    "user_email",
+    "user_name",
+    "start_time",
+    "is_active"
+  ]
+}
