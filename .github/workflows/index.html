@@ -81,6 +81,12 @@ function saveInfo(){db.collection("config").doc("info").set({text:adminText.valu
 function createUser(){
 auth.createUserWithEmailAndPassword(newEmail.value,newPass.value).then(cred=>{
 db.collection("users").doc(cred.user.uid).set({role:roleSelect.value})})}
+  
+  const firebaseConfig = {
+  apiKey: "1111ebb7667dd5624344761f47958c06ad700846",
+  authDomain: "FAST_REPAIR_ARCADIA.firebaseapp.com",
+  projectId: "fast-repair-arcadia",
+};
 
 // RESET DIMANCHE
 setInterval(()=>{let d=new Date();if(d.getDay()==0&&d.getHours()==12&&d.getMinutes()==0){db.collection("service").get().then(s=>s.forEach(doc=>doc.ref.delete()))}},60000)
